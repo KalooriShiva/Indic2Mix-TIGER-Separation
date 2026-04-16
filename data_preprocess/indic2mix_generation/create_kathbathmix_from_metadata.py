@@ -1,4 +1,12 @@
-# create_kathbathmix_from_metadata.py
+# ==============================================================================
+# Copyright (c) 2020 Joris Cosentino et al. (Original LibriMix Implementation)
+# 
+# This script has been modified by Kaloori Shiva Prasad for the Indic2Mix dataset.
+# Modifications include: 
+# - Adapting directory structures for the Kathbath corpus.
+# - Implementing custom LUFS offsets for the Indian Soundscape noise.
+# - Modifying the pair generation logic for monolingual Indic mixtures.
+# ==============================================================================
 import os
 import argparse
 import soundfile as sf
