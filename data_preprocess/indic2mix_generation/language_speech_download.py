@@ -1,3 +1,15 @@
+# ==============================================================================
+# Copyright (c) 2026 Kaloori Shiva Prasad
+#
+# Script: language_speech_download.py
+# Description: Automates the downloading and extraction of the native Indic 
+#              Kathbath corpus via Hugging Face Datasets. Dynamically groups
+#              and splits speakers based on target file distributions. 
+#              Subsequently applies the pretrained Demucs (dns64) time-domain 
+#              audio separation model to denoise the raw speech files, ensuring 
+#              pristine single-speaker signals prior to Indic2Mix dataset mixing.
+# ==============================================================================
+
 import os
 import torch
 import soundfile as sf
