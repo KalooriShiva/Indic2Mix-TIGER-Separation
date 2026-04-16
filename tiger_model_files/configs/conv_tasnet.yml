@@ -1,0 +1,58 @@
+exp:
+  exp_name: kathbath_convtasnet_fully_configured
+
+datamodule:
+  data_name: LibriMixDataModule
+  data_config:
+    task: sep_clean
+    json_dir: /home/kaloori.shiva/Thesis/TIGER/DataPreProcess/KathbathMix
+    sample_rate: 16000
+    n_src: 2
+    segment: 3.0
+    batch_size: 6
+    num_workers: 4
+
+audionet:
+  audionet_name: ConvTasNet
+  audionet_config:
+    N: 512
+    L: 16
+    B: 128
+    H: 256
+    P: 3
+    X: 8
+    R: 3
+    C: 2
+    norm_type: "gLN"
+    causal: false
+    mask_nonlinear: "relu"
+
+optimizer:
+  optim_name: Adam
+  optim_config:
+    lr: 0.001
+    weight_decay: 0.0
+
+scheduler:
+  sche_name: ReduceLROnPlateau
+  sche_config:
+    mode: "min"
+    factor: 0.5
+    patience: 10
+
+loss:
+  train:
+    loss_func: PITLossWrapper
+    sdr_type: SISDR
+    config:
+      reduction: mean
+  val:
+    loss_func: PITLossWrapper
+    sdr_type: SISDR
+    config:
+      reduction: mean
+
+training:
+  system: AudioLightningSystem
+  gpus: 1
+  epochs: 100 # Now you can control the number of epochs here
